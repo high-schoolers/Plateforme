@@ -155,6 +155,7 @@ rounds = False
 go = False
 list_nb = []
 nb_parties = ""
+txt = ""
 while running:
     
     if go :
@@ -236,6 +237,14 @@ while running:
                     if event.key == cles[i]:
                         c = chr(cles[i])
                         list_nb.append(c)
+                        centre = (largeur//2,hauteur//2)
+                        bleu = (204,229,255)
+                        nb = bouton(ecran,centre,bleu,100,50)
+                        noir = (0,0,0)
+                        for j in range(len(txt),len(list_nb)):
+                            txt = txt + str(list_nb[j])
+                        nb = texte_bouton(ecran,nb,txt,40,noir)
+                        pygame.display.flip()
                         
                 if event.key == pygame.K_RETURN :
                     for i in range(len(list_nb)):
@@ -245,6 +254,14 @@ while running:
                     rounds = False
                     pygame.quit()
                     go = True
+
+                elif event.key == pygame.K_BACKSPACE :
+                    if list_nb != []:
+                        list_nb.pop()
+                    txt = txt[:-1]
+                    nb = bouton(ecran,centre,bleu,100,50)
+                    nb = texte_bouton(ecran,nb,txt,40,noir)
+                    pygame.display.flip()
                     
         elif event.type == pygame.MOUSEBUTTONDOWN :
             position = pygame.mouse.get_pos()
