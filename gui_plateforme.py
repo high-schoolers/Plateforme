@@ -96,6 +96,21 @@ def titre(ecran,centre,texte,taille,couleur):
     ecran.blit(surface,rect)
 
 def accueil(ecran,largeur,hauteur):
+    """Affiche la page d'accueil de la plateforme
+
+    Paramètres
+    ----------
+    ecran : la fenêtre de jeu
+    largeur : int
+        la largeur de l'écran
+    hauteur : int
+        la hauteur de l'écran
+
+    Retourne
+    --------
+    rect : rectangle pygame
+        le bouton "JOUER"
+    """
     centre = (largeur//2,hauteur//2)
     bleu = (204,229,255)
     rect = bouton(ecran,centre,bleu,400,250)
@@ -108,6 +123,21 @@ def accueil(ecran,largeur,hauteur):
     return rect
 
 def joueurs(ecran,largeur,hauteur):
+    """Affiche la page du choix du nombre de joueurs
+
+    Paramères
+    ---------
+    ecran : la fenêtre de jeu
+    largeur : int
+        la largeur de l'écran
+    hauteur : int
+        la hauteur de l'écran
+
+    Retourne
+    --------
+    (joueur1,joueur2) : tuple de 2 rect
+        les deux boutons "1 joueur" et "2 joueurs"
+    """
     # Couleur de fond
     ecran.fill((204,229,255))
     # Positions
@@ -130,6 +160,16 @@ def joueurs(ecran,largeur,hauteur):
     return (joueur1,joueur2)
     
 def parties(ecran,largeur,hauteur):
+    """Affiche la page du choix du nombre de parties
+
+    Paramètres
+    ----------
+    ecran : la fenêtre de jeu
+    largeur : int
+        la largeur de l'écran
+    hauteur : int
+        la hauteur de l'écran
+    """
     ecran.fill((255,255,255))
     haut = (largeur//2,hauteur//5)
     centre_haut = (largeur//2,hauteur//3+50)
@@ -138,15 +178,6 @@ def parties(ecran,largeur,hauteur):
     nb_parties = titre(ecran,haut,"Combien de parties voulez-vous faire ?",50,noir)
     titre(ecran,centre_haut,"Entrez le nombre puis appuyez sur la touche Entrer",40,noir)
     pygame.display.flip()
-    """
-    boutons = []
-    for i in range(1,11):
-        w = 100
-        rect = bouton(ecran,(w+i*100,hauteur//2),bleu,75,75)
-        rect = texte_bouton(ecran,rect,str(i),40,noir)
-        boutons.append(rect)
-    return boutons
-    """
 
 rect_acc = accueil(ecran,largeur,hauteur)
 running = True
@@ -288,19 +319,7 @@ while running:
                         parties(ecran,largeur,hauteur)
                         players = False
                         rounds = True
-            """
-            elif rounds :
-                for i in range(10):
-                    if boutons[i].x <= position[0] <= boutons[i].x + boutons[i].width:
-                        if boutons[i].y <= position[1] <= boutons[i].y + boutons[i].height:
-                            nb_parties = i + 1
-                            print(nb_parties)
-                            go = True
-                            rounds = False
-                            pygame.quit()
-            """           
-                        
-                
+            
 pygame.quit()
 
 
